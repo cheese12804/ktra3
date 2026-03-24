@@ -40,12 +40,15 @@ Hệ thống bán hàng tách thành microservices, có 2 backend độc lập v
 - `GET /products/search?q=`
 - `POST /cart`
 - `POST /cart/add`
+- `PUT /cart/item`
+- `DELETE /cart/item`
 - `GET /cart/:id`
 
 ### staff-service (`http://localhost:3002`)
 - `POST /staff/login`
 - `POST /products`
 - `PUT /products/:id`
+- `DELETE /products/:id`
 - `GET /products`
 
 ## Seed data
@@ -119,3 +122,11 @@ docker exec -i sales-mysql mysql -uapp_user -papp_password sales_mysql < mysql_s
 # PostgreSQL
 docker exec -i sales-postgres psql -Upostgres -dsales_pg < postgres_seed.sql
 ```
+
+## Flow
+
+### Customer flow
+`Register → Login → Home → Search/Filter → Product Detail → Add to cart → View/Edit/Delete cart → Logout`
+
+### Staff flow
+`Login → Dashboard (table UI) → Add/Edit/Delete product → Logout`

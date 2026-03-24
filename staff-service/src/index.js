@@ -102,6 +102,23 @@ app.put('/products/:id', async (req, res) => {
   }
 });
 
+
+app.delete('/products/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { rowCount } = await pgPool.query('DELETE FROM products WHERE id = $1', [id]);
+
+    if (!rowCount) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+
+    return res.json({ message: 'Product deleted' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
 app.get('/products', async (_, res) => {
   try {
     const { rows } = await pgPool.query('SELECT * FROM products ORDER BY id DESC');

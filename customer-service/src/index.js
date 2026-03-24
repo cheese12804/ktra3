@@ -165,6 +165,54 @@ app.post('/cart/add', async (req, res) => {
   }
 });
 
+
+app.put('/cart/item', async (req, res) => {
+  try {
+    const { cart_id, product_id, quantity } = req.body;
+    if (!cart_id || !product_id || quantity == null) {
+      return res.status(400).json({ message: 'cart_id, product_id, quantity are required' });
+    }
+
+    if (Number(quantity) <= 0) {
+      await mysqlPool.query('DELETE FROM cart_items WHERE cart_id = ? AND product_id = ?', [cart_id, product_id]);
+      return res.json({ message: 'Item removed from cart' });
+    }
+
+    const [result] = await mysqlPool.query(
+      'UPDATE cart_items SET quantity = ? WHERE cart_id = ? AND product_id = ?',
+      [Number(quantity), cart_id, product_id]
+    );
+
+    if (!result.affectedRows) {
+      return res.status(404).json({ message: 'Cart item not found' });
+    }
+
+    return res.json({ message: 'Cart item updated' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+app.delete('/cart/item', async (req, res) => {
+  try {
+    const { cart_id, product_id } = req.body;
+    if (!cart_id || !product_id) {
+      return res.status(400).json({ message: 'cart_id and product_id are required' });
+    }
+
+    const [result] = await mysqlPool.query('DELETE FROM cart_items WHERE cart_id = ? AND product_id = ?', [cart_id, product_id]);
+    if (!result.affectedRows) {
+      return res.status(404).json({ message: 'Cart item not found' });
+    }
+
+    return res.json({ message: 'Item deleted from cart' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
 app.get('/cart/:id', async (req, res) => {
   try {
     const cartId = req.params.id;
