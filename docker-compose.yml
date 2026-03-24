@@ -1,0 +1,117 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: sales-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: sales_mysql
+      MYSQL_USER: app_user
+      MYSQL_PASSWORD: app_password
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./db/mysql-init:/docker-entrypoint-initdb.d
+    networks:
+      - sales-net
+
+  postgres:
+    image: postgres:16
+    container_name: sales-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: sales_pg
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db/postgres-init:/docker-entrypoint-initdb.d
+    networks:
+      - sales-net
+
+  customer-service:
+    build:
+      context: ./customer-service
+    container_name: customer-service
+    restart: unless-stopped
+    environment:
+      PORT: 3001
+      MYSQL_HOST: mysql
+      MYSQL_USER: app_user
+      MYSQL_PASSWORD: app_password
+      MYSQL_DATABASE: sales_mysql
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: sales_pg
+      POSTGRES_PORT: 5432
+    depends_on:
+      - mysql
+      - postgres
+    ports:
+      - '3001:3001'
+    networks:
+      - sales-net
+
+  staff-service:
+    build:
+      context: ./staff-service
+    container_name: staff-service
+    restart: unless-stopped
+    environment:
+      PORT: 3002
+      MYSQL_HOST: mysql
+      MYSQL_USER: app_user
+      MYSQL_PASSWORD: app_password
+      MYSQL_DATABASE: sales_mysql
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: sales_pg
+      POSTGRES_PORT: 5432
+    depends_on:
+      - mysql
+      - postgres
+    ports:
+      - '3002:3002'
+    networks:
+      - sales-net
+
+  customer-ui:
+    build:
+      context: ./customer-ui
+    container_name: customer-ui
+    restart: unless-stopped
+    environment:
+      VITE_CUSTOMER_API: http://localhost:3001
+    depends_on:
+      - customer-service
+    ports:
+      - '5173:5173'
+    networks:
+      - sales-net
+
+  staff-ui:
+    build:
+      context: ./staff-ui
+    container_name: staff-ui
+    restart: unless-stopped
+    environment:
+      VITE_STAFF_API: http://localhost:3002
+    depends_on:
+      - staff-service
+    ports:
+      - '5174:5174'
+    networks:
+      - sales-net
+
+volumes:
+  mysql_data:
+  postgres_data:
+
+networks:
+  sales-net:
+    driver: bridge
