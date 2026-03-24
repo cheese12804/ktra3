@@ -1,0 +1,88 @@
+USE sales_mysql;
+
+INSERT INTO staff (id, username, password, role, created_at) VALUES
+  (1, 'admin',   '$2b$12$hmONtlZofbojTu3M1PeN0.mK9N5r26Bv1.bnB9.yg3/zqDI8B1cPO', 'admin', '2025-11-01 08:00:00'),
+  (2, 'admin01', '$2b$12$Xi.eUtGC.ibhS/lK47cjo.ibylHzi3qEKeWhXe69ol9/.Ob6H8VgW', 'admin', '2025-11-02 08:00:00'),
+  (3, 'staff01', '$2b$12$igypHYhDFVaVEqd2qhdgdOaTuSSa2G28/eIm8NxD2FOAmSoX9mARa', 'staff', '2025-11-03 08:00:00'),
+  (4, 'staff02', '$2b$12$3.aNjHytEex4ftDfJ8BpoercoGSBwxmxSm4/8LQ2uSRWUd5tMJ/hm', 'staff', '2025-11-04 08:00:00'),
+  (5, 'staff03', '$2b$12$rIP0CCQhTITdfmmr4vQKsu/W9tARPeEurykJie8ojKjK4fv8YWHjm', 'staff', '2025-11-05 08:00:00'),
+  (6, 'staff04', '$2b$12$hADspytmD4U85gPnwB15K.juSJCpbn1SfvpO.2H3v8T8ckOgHcaWm', 'staff', '2025-11-06 08:00:00')
+ON DUPLICATE KEY UPDATE username = VALUES(username), password = VALUES(password), role = VALUES(role);
+
+INSERT INTO customers (id, username, password, email, full_name, phone, created_at) VALUES
+  (1,  'user1',          '$2b$12$gvTuRYm8Xy0kTOppLYjn2OphYMF6XGgyz3YJ2BfHfhDz.Frs5HIW2', 'user1@gmail.com',           'Nguyễn Minh Anh',      '0912345678', '2025-11-01 09:10:00'),
+  (2,  'tranthanhnam',   '$2b$12$vyq4rJN/7N9CW/1oTB9HTuP9AgmfETSlzi992JX/R9uBYpS0LV1A.', 'tranthanhnam@gmail.com',    'Trần Thanh Nam',       '0987654321', '2025-11-01 09:20:00'),
+  (3,  'lethuyduong',    '$2b$12$/uOu3uX3K/bdUeCE0rC4Dek3I8EXu01M.fubK49koYegWCi3A4u26', 'lethuyduong@gmail.com',     'Lê Thùy Dương',        '0901122334', '2025-11-01 09:30:00'),
+  (4,  'phamquanghuy',   '$2b$12$.EtvaW1u740jmvzaJx80sOjTdqX5Sstfwf5aFLMUjiFRNJUsFs1qW', 'phamquanghuy@gmail.com',    'Phạm Quang Huy',       '0933445566', '2025-11-01 09:40:00'),
+  (5,  'doanlinhchi',    '$2b$12$Nl0jz85XRCqN8vpsUA.IMOeG10DBj2s1aosQbBo9JkXjkOJBzGDf6', 'doanlinhchi@gmail.com',     'Đoàn Linh Chi',        '0966778899', '2025-11-01 09:50:00'),
+  (6,  'nguyenkhanhvy',  '$2b$12$NFQOhK3Gv35hvQTkYLD1Te0RlHyGrVyHlWbD/t82yax/5DF/TbsFq', 'nguyenkhanhvy@gmail.com',   'Nguyễn Khánh Vy',      '0977001122', '2025-11-02 10:00:00'),
+  (7,  'buitrungduc',    '$2b$12$h5bzR6n..9qFn4q6nmfNieF/rjYnvNCTytFccIVm9Z6sFp3PIvdSC', 'buitrungduc@gmail.com',     'Bùi Trung Đức',        '0944556677', '2025-11-02 10:10:00'),
+  (8,  'vuminhchau',     '$2b$12$q2J.j5Xy.j1r7VFLZ3FAxezRlA9EzC.nBXt4UKTOveGYOaV4IVs/6', 'vuminhchau@gmail.com',      'Vũ Minh Châu',         '0911223344', '2025-11-02 10:20:00'),
+  (9,  'dangkhoinguyen', '$2b$12$k6FamnkrWSdLq8beFqVk0eOlXNRHjWRaTZhT1zrUYBUN2lZgtyp2W', 'dangkhoinguyen@gmail.com',  'Đặng Khôi Nguyên',     '0922334455', '2025-11-02 10:30:00'),
+  (10, 'truongthao',     '$2b$12$jJst648Oc3I6KuHFZNkz4OAtM2owGyYjYPD.q0szN/RSZq9BV75R2', 'truongthao@gmail.com',      'Trương Thảo',          '0933557799', '2025-11-02 10:40:00'),
+  (11, 'hoangtuananh',   '$2b$12$I4qQ5gIfazrMTDXaa3pQAesTywAsra8d/evyyXF8kzK6F1T9zlmQS', 'hoangtuananh@gmail.com',    'Hoàng Tuấn Anh',       '0944668800', '2025-11-03 11:00:00'),
+  (12, 'ngocanhpham',    '$2b$12$2X/NIEoFoHe6vlvN/BrAXOj43rJ6ISiCakGsHAIEkGJRvGsCkesuq', 'ngocanhpham@gmail.com',     'Phạm Ngọc Anh',        '0955779911', '2025-11-03 11:10:00'),
+  (13, 'minhthuong',     '$2b$12$O20NBfRpVvRKuQXz3IApdOfIFY/.PwMipw2hmy02n5crAPdsykz2i', 'minhthuong@gmail.com',      'Minh Thương',          '0966880022', '2025-11-03 11:20:00'),
+  (14, 'lananhnguyen',   '$2b$12$4UlfNPFd3/FOTEl2Ie428u59dSTDnyp/you80ipRaOBTm/2A0T5FO', 'lananhnguyen@gmail.com',    'Nguyễn Lan Anh',       '0977991133', '2025-11-03 11:30:00'),
+  (15, 'nguyenhieunam',  '$2b$12$IeJXckvy0JpqodclDbMapOFFjzhdwICjnCsPe6RCc9DvVvtuBF.o2', 'nguyenhieunam@gmail.com',   'Nguyễn Hiếu Nam',      '0988112244', '2025-11-03 11:40:00'),
+  (16, 'phamthanhha',    '$2b$12$JUTJH62nyOM0BXT5XY5RWuS2x252E3wkQWqdZzx0GFidv4rv9CBTW', 'phamthanhha@gmail.com',     'Phạm Thanh Hà',        '0919233445', '2025-11-04 12:00:00'),
+  (17, 'quocvietle',     '$2b$12$0v6v7UwYibbnUNVLW948QePeEnKFS1gn5eCPQDStmnsYvKIiQ97X2', 'quocvietle@gmail.com',      'Lê Quốc Việt',         '0920344556', '2025-11-04 12:10:00'),
+  (18, 'hongnhungdo',    '$2b$12$K.2xMw.BF0r3erBehOAsn.uwTd7QON/1VEolPPyCW1Qqrh3Wan0Q6', 'hongnhungdo@gmail.com',     'Đỗ Hồng Nhung',        '0931455667', '2025-11-04 12:20:00'),
+  (19, 'khanhlinhvo',    '$2b$12$Xl6b2UqJzNiZ9Ik8cmqpP.vVwq276HIzCr4V49i9OR6QFWoDnwVr2', 'khanhlinhvo@gmail.com',     'Võ Khánh Linh',        '0942566778', '2025-11-04 12:30:00'),
+  (20, 'duyphuongtran',  '$2b$12$bB.8A3uJIVni44AAUfBdFOozZXjZXOG/1.gKZLVk59Tbz65/dBDoK', 'duyphuongtran@gmail.com',   'Trần Duy Phương',      '0953677889', '2025-11-04 12:40:00')
+ON DUPLICATE KEY UPDATE username = VALUES(username), email = VALUES(email), password = VALUES(password), full_name = VALUES(full_name), phone = VALUES(phone);
+
+INSERT INTO carts (id, customer_id, created_at, status) VALUES
+  (1,1,'2025-11-05 08:00:00','active'),(2,1,'2025-11-02 08:00:00','completed'),
+  (3,2,'2025-11-05 08:10:00','active'),
+  (4,3,'2025-11-04 09:00:00','completed'),(5,3,'2025-11-06 10:00:00','active'),
+  (6,4,'2025-11-06 10:10:00','active'),
+  (7,5,'2025-11-03 11:00:00','completed'),(8,5,'2025-11-06 11:10:00','active'),
+  (9,6,'2025-11-06 11:20:00','active'),
+  (10,7,'2025-11-01 12:00:00','completed'),(11,7,'2025-11-06 12:10:00','active'),
+  (12,8,'2025-11-06 12:20:00','active'),
+  (13,9,'2025-11-04 13:00:00','completed'),(14,9,'2025-11-06 13:10:00','active'),
+  (15,10,'2025-11-06 13:20:00','active'),
+  (16,11,'2025-11-02 14:00:00','completed'),(17,11,'2025-11-06 14:10:00','active'),
+  (18,12,'2025-11-06 14:20:00','active'),
+  (19,13,'2025-11-01 15:00:00','completed'),(20,13,'2025-11-06 15:10:00','active'),
+  (21,14,'2025-11-06 15:20:00','active'),
+  (22,15,'2025-11-03 16:00:00','completed'),(23,15,'2025-11-06 16:10:00','active'),
+  (24,16,'2025-11-06 16:20:00','active'),
+  (25,17,'2025-11-02 17:00:00','completed'),(26,17,'2025-11-06 17:10:00','active'),
+  (27,18,'2025-11-06 17:20:00','active'),
+  (28,19,'2025-11-04 18:00:00','completed'),(29,19,'2025-11-06 18:10:00','active'),
+  (30,20,'2025-11-06 18:20:00','active')
+ON DUPLICATE KEY UPDATE customer_id = VALUES(customer_id), status = VALUES(status), created_at = VALUES(created_at);
+
+INSERT INTO cart_items (cart_id, product_id, quantity) VALUES
+  (1,1,1),(1,16,1),(1,21,2),
+  (2,3,1),(2,18,1),(2,24,1),(2,8,2),
+  (3,2,1),(3,17,2),(3,20,1),
+  (4,4,1),(4,19,1),(4,25,1),
+  (5,5,2),(5,11,1),(5,26,1),(5,28,1),
+  (6,6,1),(6,22,1),
+  (7,7,1),(7,23,1),(7,30,1),
+  (8,9,1),(8,10,2),(8,14,1),
+  (9,12,1),(9,15,1),(9,27,1),
+  (10,13,1),(10,24,2),(10,29,1),(10,2,1),
+  (11,1,1),(11,4,1),(11,6,1),(11,17,1),(11,19,1),
+  (12,8,1),(12,21,1),
+  (13,3,1),(13,20,1),(13,28,1),
+  (14,5,2),(14,18,1),(14,23,1),
+  (15,7,1),(15,16,1),
+  (16,9,1),(16,25,1),(16,27,1),
+  (17,10,1),(17,12,1),(17,14,1),(17,30,1),
+  (18,11,1),(18,13,1),
+  (19,15,1),(19,19,1),(19,22,1),
+  (20,2,1),(20,6,1),(20,26,1),(20,29,1),
+  (21,4,1),(21,8,1),(21,24,1),
+  (22,1,1),(22,17,1),
+  (23,3,2),(23,18,1),(23,21,1),(23,28,1),
+  (24,5,1),(24,9,1),(24,23,1),
+  (25,7,1),(25,16,1),(25,30,1),
+  (26,10,1),(26,20,1),(26,27,1),
+  (27,11,2),(27,12,1),(27,25,1),(27,29,1),
+  (28,13,1),(28,14,1),(28,19,1),
+  (29,15,1),(29,22,1),(29,26,1),
+  (30,2,1),(30,6,1),(30,18,1),(30,24,1),(30,30,1);

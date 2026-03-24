@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql2/promise');
 const { Pool } = require('pg');
+const bcrypt = require('bcryptjs');
 require('dotenv').config();
 
 const app = express();
@@ -29,9 +30,13 @@ app.get('/health', (_, res) => res.json({ ok: true, service: 'customer-service' 
 
 app.post('/auth/register', async (req, res) => {
   try {
-    const { username, password, email } = req.body;
-    if (!username || !password || !email) {
-      return res.status(400).json({ message: 'username, password, email are required' });
+    const { username, password, email, full_name, phone } = req.body;
+    if (!username || !password || !email || !full_name || !phone) {
+      return res.status(400).json({ message: 'username, password, email, full_name, phone are required' });
+    }
+
+    if (!/^\d{10}$/.test(phone)) {
+      return res.status(400).json({ message: 'phone must be a 10-digit number' });
     }
 
     const [existing] = await mysqlPool.query('SELECT id FROM customers WHERE username = ? OR email = ?', [username, email]);
@@ -39,12 +44,13 @@ app.post('/auth/register', async (req, res) => {
       return res.status(409).json({ message: 'Username or email already exists' });
     }
 
+    const hashed = await bcrypt.hash(password, 10);
     const [result] = await mysqlPool.query(
-      'INSERT INTO customers (username, password, email) VALUES (?, ?, ?)',
-      [username, password, email]
+      'INSERT INTO customers (username, password, email, full_name, phone) VALUES (?, ?, ?, ?, ?)',
+      [username, hashed, email, full_name, phone]
     );
 
-    return res.status(201).json({ id: result.insertId, username, email });
+    return res.status(201).json({ id: result.insertId, username, email, full_name, phone });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Internal server error' });
@@ -55,15 +61,29 @@ app.post('/auth/login', async (req, res) => {
   try {
     const { username, password } = req.body;
     const [rows] = await mysqlPool.query(
-      'SELECT id, username, email FROM customers WHERE username = ? AND password = ?',
-      [username, password]
+      'SELECT id, username, email, full_name, phone, password FROM customers WHERE username = ?',
+      [username]
     );
 
     if (!rows.length) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    return res.json({ user: rows[0] });
+    const user = rows[0];
+    const isValid = await bcrypt.compare(password, user.password);
+    if (!isValid) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    return res.json({
+      user: {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        full_name: user.full_name,
+        phone: user.phone
+      }
+    });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Internal server error' });

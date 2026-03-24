@@ -21,7 +21,13 @@ Hệ thống bán hàng tách thành microservices, có 2 backend độc lập v
 ├── staff-ui
 ├── db
 │   ├── mysql-init
+│   │   ├── 00-schema.sql
+│   │   └── mysql_seed.sql
 │   └── postgres-init
+│       ├── 00-schema.sql
+│       └── postgres_seed.sql
+├── mysql_seed.sql
+├── postgres_seed.sql
 └── docker-compose.yml
 ```
 
@@ -45,11 +51,50 @@ Hệ thống bán hàng tách thành microservices, có 2 backend độc lập v
 ## Seed data
 
 ### MySQL
-- Staff: `staff1 / 123456`
-- Customer: `customer1 / 123456`
+- `staff`: 6 account (`admin`, `admin01`, `staff01`...`staff04`) với mật khẩu bcrypt hash
+- `customers`: 20 account với username/email/full_name/phone realistic
+- `carts`: 30 cart (mỗi customer 1-2 cart)
+- `cart_items`: dữ liệu liên kết hợp lệ, mỗi cart 2-5 item
 
 ### PostgreSQL
-- `iPhone 15`, `Samsung Galaxy S24`, `MacBook Air M3`, `Dell XPS 13`
+- `products`: 30 sản phẩm
+  - 15 `mobile`
+  - 15 `laptop`
+- Giá trong khoảng 7.990.000 → 39.990.000 VND
+
+### Tài khoản test
+- Staff: `admin / 123456`
+- Customer: `user1 / 123456`
+
+## Dữ liệu mẫu (rút gọn)
+
+### 5 staff
+- admin (admin)
+- admin01 (admin)
+- staff01 (staff)
+- staff02 (staff)
+- staff03 (staff)
+
+### 5 customers
+- user1 - Nguyễn Minh Anh - user1@gmail.com
+- tranthanhnam - Trần Thanh Nam - tranthanhnam@gmail.com
+- lethuyduong - Lê Thùy Dương - lethuyduong@gmail.com
+- phamquanghuy - Phạm Quang Huy - phamquanghuy@gmail.com
+- doanlinhchi - Đoàn Linh Chi - doanlinhchi@gmail.com
+
+### 5 mobile
+- iPhone 13 128GB
+- iPhone 15 128GB
+- Samsung Galaxy S24
+- Xiaomi 13T Pro
+- Google Pixel 8
+
+### 5 laptop
+- MacBook Air M3 13"
+- Dell XPS 13
+- HP Victus 16
+- ASUS Zenbook 14 OLED
+- Lenovo ThinkPad E14
 
 ## Chạy hệ thống
 
@@ -63,10 +108,14 @@ Sau khi chạy:
 - Customer API: `http://localhost:3001`
 - Staff API: `http://localhost:3002`
 
-## Flow
+## Import seed thủ công (optional)
 
-### Customer flow
-`Register → Login → Home → Search/Filter → Add to cart → View cart`
+Nếu muốn import thủ công thay vì để docker auto-init:
 
-### Staff flow
-`Login → Dashboard → Add product/Edit product`
+```bash
+# MySQL
+docker exec -i sales-mysql mysql -uapp_user -papp_password sales_mysql < mysql_seed.sql
+
+# PostgreSQL
+docker exec -i sales-postgres psql -Upostgres -dsales_pg < postgres_seed.sql
+```

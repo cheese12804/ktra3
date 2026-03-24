@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql2/promise');
 const { Pool } = require('pg');
+const bcrypt = require('bcryptjs');
 require('dotenv').config();
 
 const app = express();
@@ -31,15 +32,27 @@ app.post('/staff/login', async (req, res) => {
   try {
     const { username, password } = req.body;
     const [rows] = await mysqlPool.query(
-      'SELECT id, username, role FROM staff WHERE username = ? AND password = ?',
-      [username, password]
+      'SELECT id, username, role, password FROM staff WHERE username = ?',
+      [username]
     );
 
     if (!rows.length) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    return res.json({ staff: rows[0] });
+    const staffUser = rows[0];
+    const isValid = await bcrypt.compare(password, staffUser.password);
+    if (!isValid) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    return res.json({
+      staff: {
+        id: staffUser.id,
+        username: staffUser.username,
+        role: staffUser.role
+      }
+    });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Internal server error' });

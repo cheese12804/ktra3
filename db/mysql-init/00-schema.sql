@@ -14,6 +14,8 @@ CREATE TABLE IF NOT EXISTS customers (
   username VARCHAR(50) NOT NULL UNIQUE,
   password VARCHAR(100) NOT NULL,
   email VARCHAR(150) NOT NULL UNIQUE,
+  full_name VARCHAR(150) NOT NULL,
+  phone VARCHAR(10) NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -32,11 +34,3 @@ CREATE TABLE IF NOT EXISTS cart_items (
   quantity INT NOT NULL DEFAULT 1,
   FOREIGN KEY (cart_id) REFERENCES carts(id)
 );
-
-INSERT INTO staff (username, password, role)
-VALUES ('staff1', '123456', 'admin')
-ON DUPLICATE KEY UPDATE username = VALUES(username);
-
-INSERT INTO customers (username, password, email)
-VALUES ('customer1', '123456', 'customer1@example.com')
-ON DUPLICATE KEY UPDATE username = VALUES(username);

@@ -1,0 +1,41 @@
+INSERT INTO products (id, name, category, price, quantity, description, created_at, updated_at) VALUES
+  (1, 'iPhone 13 128GB', 'mobile', 15990000, 45, 'Màn hình OLED 6.1 inch, chip A15.', '2025-11-01 08:00:00', '2025-11-01 08:00:00'),
+  (2, 'iPhone 14 128GB', 'mobile', 18990000, 38, 'Camera nâng cấp, pin tốt cho cả ngày.', '2025-11-01 08:05:00', '2025-11-01 08:05:00'),
+  (3, 'iPhone 15 128GB', 'mobile', 21990000, 40, 'Dynamic Island, cổng USB-C.', '2025-11-01 08:10:00', '2025-11-01 08:10:00'),
+  (4, 'iPhone 15 Pro 256GB', 'mobile', 30990000, 22, 'Titanium, hiệu năng cao cho quay dựng.', '2025-11-01 08:15:00', '2025-11-01 08:15:00'),
+  (5, 'Samsung Galaxy S23', 'mobile', 17990000, 50, 'Màn hình AMOLED, camera đa dụng.', '2025-11-01 08:20:00', '2025-11-01 08:20:00'),
+  (6, 'Samsung Galaxy S24', 'mobile', 20990000, 42, 'AI hỗ trợ dịch và chỉnh ảnh.', '2025-11-01 08:25:00', '2025-11-01 08:25:00'),
+  (7, 'Samsung Galaxy S24 Ultra', 'mobile', 33990000, 18, 'Bút S Pen, zoom quang mạnh.', '2025-11-01 08:30:00', '2025-11-01 08:30:00'),
+  (8, 'Samsung Galaxy A55', 'mobile', 9990000, 70, 'Tầm trung hiệu năng ổn định.', '2025-11-01 08:35:00', '2025-11-01 08:35:00'),
+  (9, 'Xiaomi 13T', 'mobile', 11990000, 66, 'Camera Leica, sạc nhanh 67W.', '2025-11-01 08:40:00', '2025-11-01 08:40:00'),
+  (10, 'Xiaomi 13T Pro', 'mobile', 14990000, 54, 'Hiệu năng cao, sạc 120W.', '2025-11-01 08:45:00', '2025-11-01 08:45:00'),
+  (11, 'Xiaomi Redmi Note 13 Pro', 'mobile', 7990000, 95, 'Camera 200MP, giá tốt.', '2025-11-01 08:50:00', '2025-11-01 08:50:00'),
+  (12, 'Xiaomi 14', 'mobile', 22990000, 27, 'Flagship nhỏ gọn, chip mạnh.', '2025-11-01 08:55:00', '2025-11-01 08:55:00'),
+  (13, 'OPPO Reno11', 'mobile', 10490000, 72, 'Thiết kế mỏng nhẹ, camera chân dung.', '2025-11-01 09:00:00', '2025-11-01 09:00:00'),
+  (14, 'vivo V30', 'mobile', 10990000, 68, 'Pin lớn, màn hình cong đẹp.', '2025-11-01 09:05:00', '2025-11-01 09:05:00'),
+  (15, 'Google Pixel 8', 'mobile', 19990000, 33, 'Android gốc, chụp đêm tốt.', '2025-11-01 09:10:00', '2025-11-01 09:10:00'),
+
+  (16, 'MacBook Air M2 13"', 'laptop', 25990000, 30, 'Mỏng nhẹ, pin lên đến 18 giờ.', '2025-11-01 10:00:00', '2025-11-01 10:00:00'),
+  (17, 'MacBook Air M3 13"', 'laptop', 28990000, 24, 'Chip M3, tối ưu công việc văn phòng.', '2025-11-01 10:05:00', '2025-11-01 10:05:00'),
+  (18, 'MacBook Pro M3 14"', 'laptop', 39990000, 12, 'Hiệu năng cho lập trình và sáng tạo.', '2025-11-01 10:10:00', '2025-11-01 10:10:00'),
+  (19, 'Dell XPS 13', 'laptop', 31990000, 15, 'Thiết kế cao cấp, màn hình sắc nét.', '2025-11-01 10:15:00', '2025-11-01 10:15:00'),
+  (20, 'Dell Inspiron 14', 'laptop', 16990000, 50, 'Laptop học tập và làm việc phổ thông.', '2025-11-01 10:20:00', '2025-11-01 10:20:00'),
+  (21, 'Dell Latitude 5440', 'laptop', 22990000, 32, 'Bền bỉ cho môi trường doanh nghiệp.', '2025-11-01 10:25:00', '2025-11-01 10:25:00'),
+  (22, 'HP Pavilion 15', 'laptop', 17990000, 47, 'Cân bằng giữa hiệu năng và giá.', '2025-11-01 10:30:00', '2025-11-01 10:30:00'),
+  (23, 'HP Envy x360 14', 'laptop', 24990000, 28, 'Màn hình cảm ứng gập xoay 360 độ.', '2025-11-01 10:35:00', '2025-11-01 10:35:00'),
+  (24, 'HP Victus 16', 'laptop', 21990000, 36, 'Gaming tầm trung với GPU rời.', '2025-11-01 10:40:00', '2025-11-01 10:40:00'),
+  (25, 'ASUS Vivobook 15', 'laptop', 14990000, 60, 'Giá tốt, đủ nhu cầu văn phòng.', '2025-11-01 10:45:00', '2025-11-01 10:45:00'),
+  (26, 'ASUS Zenbook 14 OLED', 'laptop', 26990000, 25, 'Màn OLED đẹp, thân máy nhẹ.', '2025-11-01 10:50:00', '2025-11-01 10:50:00'),
+  (27, 'ASUS TUF Gaming F15', 'laptop', 23990000, 34, 'Hiệu năng game tốt, tản nhiệt ổn.', '2025-11-01 10:55:00', '2025-11-01 10:55:00'),
+  (28, 'Lenovo ThinkPad E14', 'laptop', 18990000, 40, 'Bàn phím tốt, phù hợp doanh nghiệp.', '2025-11-01 11:00:00', '2025-11-01 11:00:00'),
+  (29, 'Acer Swift Go 14', 'laptop', 20990000, 29, 'Thiết kế gọn, màn hình 2.8K.', '2025-11-01 11:05:00', '2025-11-01 11:05:00'),
+  (30, 'MSI Modern 14', 'laptop', 15990000, 44, 'Laptop mỏng nhẹ cho sinh viên văn phòng.', '2025-11-01 11:10:00', '2025-11-01 11:10:00')
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  category = EXCLUDED.category,
+  price = EXCLUDED.price,
+  quantity = EXCLUDED.quantity,
+  description = EXCLUDED.description,
+  updated_at = EXCLUDED.updated_at;
+
+SELECT setval('products_id_seq', (SELECT MAX(id) FROM products));
