@@ -119,3 +119,11 @@ docker exec -i sales-mysql mysql -uapp_user -papp_password sales_mysql < mysql_s
 # PostgreSQL
 docker exec -i sales-postgres psql -Upostgres -dsales_pg < postgres_seed.sql
 ```
+
+## Flow
+
+### Customer flow
+`Register → Login → Home → Search/Filter → Product Detail → Add to cart → View cart`
+
+### Staff flow
+`Login → Dashboard (table UI) → Add product / Edit product`

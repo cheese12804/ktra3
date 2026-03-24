@@ -27,21 +27,36 @@ export default function AddProductPage() {
   };
 
   return (
-    <div className="container">
-      <h1>Add product</h1>
-      <Link to="/dashboard">← Back</Link>
-      <form onSubmit={submit} className="card">
-        <input placeholder="Name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
-        <select value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })}>
-          <option value="mobile">mobile</option>
-          <option value="laptop">laptop</option>
-        </select>
-        <input type="number" placeholder="Price" value={form.price} onChange={(e) => setForm({ ...form, price: Number(e.target.value) })} />
-        <input type="number" placeholder="Quantity" value={form.quantity} onChange={(e) => setForm({ ...form, quantity: Number(e.target.value) })} />
-        <textarea placeholder="Description" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} />
-        <button type="submit">Create</button>
-      </form>
-      <p>{msg}</p>
+    <div className="page-wrap">
+      <div className="container form-container">
+        <div className="topbar">
+          <h1>Add product</h1>
+          <Link className="link-btn" to="/dashboard">← Back</Link>
+        </div>
+
+        <form onSubmit={submit} className="card">
+          <label>Tên sản phẩm</label>
+          <input placeholder="VD: iPhone 15" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+
+          <label>Category</label>
+          <select value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })}>
+            <option value="mobile">mobile</option>
+            <option value="laptop">laptop</option>
+          </select>
+
+          <label>Price (VND)</label>
+          <input type="number" placeholder="20000000" value={form.price} onChange={(e) => setForm({ ...form, price: Number(e.target.value) })} />
+
+          <label>Quantity</label>
+          <input type="number" placeholder="20" value={form.quantity} onChange={(e) => setForm({ ...form, quantity: Number(e.target.value) })} />
+
+          <label>Description</label>
+          <textarea placeholder="Mô tả ngắn" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} />
+
+          <button type="submit">Create</button>
+        </form>
+        <p className="success-text">{msg}</p>
+      </div>
     </div>
   );
 }
