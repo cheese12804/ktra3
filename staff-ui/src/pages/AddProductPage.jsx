@@ -7,7 +7,8 @@ const defaultForm = {
   category: 'mobile',
   price: 0,
   quantity: 1,
-  description: ''
+  description: '',
+  image_url: ''
 };
 
 export default function AddProductPage() {
@@ -60,6 +61,9 @@ export default function AddProductPage() {
 
           <label>Description</label>
           <textarea placeholder="Mô tả ngắn" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} />
+
+          <label>Image URL</label>
+          <input placeholder="https://..." value={form.image_url} onChange={(e) => setForm({ ...form, image_url: e.target.value })} />
 
           <button type="submit">Create</button>
         </form>

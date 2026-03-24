@@ -69,6 +69,7 @@ export default function HomePage() {
         <div className="grid">
           {products.map((p) => (
             <div className="card product-card" key={p.id}>
+              {p.image_url && <img className="product-image" src={p.image_url} alt={p.name} />}
               <h3>{p.name}</h3>
               <p>Category: {p.category}</p>
               <p>Giá: {Number(p.price).toLocaleString('vi-VN')} VND</p>

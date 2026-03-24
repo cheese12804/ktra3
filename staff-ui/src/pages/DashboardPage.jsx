@@ -29,6 +29,11 @@ export default function DashboardPage() {
     loadProducts();
   };
 
+  const deleteImage = async (product) => {
+    await api.put(`/products/${product.id}`, { ...product, image_url: '' });
+    loadProducts();
+  };
+
   return (
     <div className="page-wrap">
       <div className="container">
@@ -44,7 +49,8 @@ export default function DashboardPage() {
         </div>
 
         <div className="card table-card">
-          <div className="table-head">
+          <div className="table-head table-image">
+            <span>Ảnh</span>
             <span>Tên sản phẩm</span>
             <span>Category</span>
             <span>Giá</span>
@@ -53,14 +59,18 @@ export default function DashboardPage() {
           </div>
 
           {products.map((p) => (
-            <div className="table-row" key={p.id}>
+            <div className="table-row table-image" key={p.id}>
+              <span>
+                {p.image_url ? <img className="thumb" src={p.image_url} alt={p.name} /> : <span className="no-image">No image</span>}
+              </span>
               <span>{p.name}</span>
               <span>{p.category}</span>
               <span>{Number(p.price).toLocaleString('vi-VN')} VND</span>
               <span>{p.quantity}</span>
               <div className="actions">
                 <Link className="link-btn" to={`/edit-product/${p.id}`}>Edit</Link>
-                <button className="danger-btn" onClick={() => deleteProduct(p.id)}>Xóa</button>
+                <button className="danger-btn" onClick={() => deleteImage(p)}>Xóa ảnh</button>
+                <button className="danger-btn" onClick={() => deleteProduct(p.id)}>Xóa SP</button>
               </div>
             </div>
           ))}

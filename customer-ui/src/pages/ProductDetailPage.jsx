@@ -68,6 +68,7 @@ export default function ProductDetailPage() {
         </div>
 
         <div className="card detail-card">
+          {product.image_url && <img className="detail-image" src={product.image_url} alt={product.name} />}
           <h2>{product.name}</h2>
           <p><strong>Category:</strong> {product.category}</p>
           <p><strong>Giá:</strong> {Number(product.price).toLocaleString('vi-VN')} VND</p>

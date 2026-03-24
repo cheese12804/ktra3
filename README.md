@@ -51,6 +51,8 @@ Hệ thống bán hàng tách thành microservices, có 2 backend độc lập v
 - `DELETE /products/:id`
 - `GET /products`
 
+> Product payload hỗ trợ thêm `image_url` để hiển thị ảnh.
+
 ## Seed data
 
 ### MySQL
@@ -129,4 +131,4 @@ docker exec -i sales-postgres psql -Upostgres -dsales_pg < postgres_seed.sql
 `Register → Login → Home → Search/Filter → Product Detail → Add to cart → View/Edit/Delete cart → Logout`
 
 ### Staff flow
-`Login → Dashboard (table UI) → Add/Edit/Delete product → Logout`
+`Login → Dashboard (table UI) → Add/Edit/Delete product + Add/Delete image → Logout`

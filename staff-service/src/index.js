@@ -61,14 +61,14 @@ app.post('/staff/login', async (req, res) => {
 
 app.post('/products', async (req, res) => {
   try {
-    const { name, category, price, quantity, description } = req.body;
+    const { name, category, price, quantity, description, image_url } = req.body;
     if (!name || !category || price == null || quantity == null) {
       return res.status(400).json({ message: 'name, category, price, quantity are required' });
     }
 
     const { rows } = await pgPool.query(
-      'INSERT INTO products(name, category, price, quantity, description) VALUES($1, $2, $3, $4, $5) RETURNING *',
-      [name, category, price, quantity, description || '']
+      'INSERT INTO products(name, category, price, quantity, description, image_url) VALUES($1, $2, $3, $4, $5, $6) RETURNING *',
+      [name, category, price, quantity, description || '', image_url || null]
     );
 
     return res.status(201).json(rows[0]);
@@ -81,14 +81,14 @@ app.post('/products', async (req, res) => {
 app.put('/products/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, category, price, quantity, description } = req.body;
+    const { name, category, price, quantity, description, image_url } = req.body;
 
     const { rows } = await pgPool.query(
       `UPDATE products
-       SET name = $1, category = $2, price = $3, quantity = $4, description = $5, updated_at = NOW()
-       WHERE id = $6
+       SET name = $1, category = $2, price = $3, quantity = $4, description = $5, image_url = $6, updated_at = NOW()
+       WHERE id = $7
        RETURNING *`,
-      [name, category, price, quantity, description || '', id]
+      [name, category, price, quantity, description || '', image_url || null, id]
     );
 
     if (!rows.length) {

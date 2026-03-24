@@ -5,7 +5,7 @@ import api from '../api';
 export default function EditProductPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [form, setForm] = useState({ name: '', category: 'mobile', price: 0, quantity: 1, description: '' });
+  const [form, setForm] = useState({ name: '', category: 'mobile', price: 0, quantity: 1, description: '', image_url: '' });
   const [msg, setMsg] = useState('');
 
   useEffect(() => {
@@ -61,6 +61,9 @@ export default function EditProductPage() {
 
           <label>Description</label>
           <textarea placeholder="Description" value={form.description || ''} onChange={(e) => setForm({ ...form, description: e.target.value })} />
+
+          <label>Image URL</label>
+          <input placeholder="https://..." value={form.image_url || ''} onChange={(e) => setForm({ ...form, image_url: e.target.value })} />
 
           <button type="submit">Update</button>
         </form>

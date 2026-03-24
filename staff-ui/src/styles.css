@@ -73,7 +73,7 @@ button:hover { background: var(--primary-hover); }
 .table-card { overflow-x: auto; }
 .table-head, .table-row {
   display: grid;
-  grid-template-columns: 2fr 1fr 1.2fr .6fr .8fr;
+  grid-template-columns: .9fr 1.6fr .9fr 1.1fr .5fr 1.7fr;
   gap: 8px;
   align-items: center;
   padding: 10px 0;
@@ -90,7 +90,7 @@ button:hover { background: var(--primary-hover); }
 
 @media (max-width: 900px) {
   .table-head, .table-row {
-    grid-template-columns: 1.6fr 1fr 1fr .7fr .9fr;
+    grid-template-columns: .8fr 1.3fr .8fr .9fr .5fr 1.3fr;
     font-size: 13px;
   }
 }
@@ -100,3 +100,6 @@ button:hover { background: var(--primary-hover); }
 .actions { display: flex; gap: 8px; }
 .danger-btn { background: #dc2626; color: #fff; border: none; border-radius: 8px; padding: 8px 10px; cursor: pointer; }
 .danger-btn:hover { background: #b91c1c; }
+
+.thumb { width: 70px; height: 46px; object-fit: cover; border-radius: 8px; border: 1px solid #cbd5e1; }
+.no-image { color: #94a3b8; font-size: 12px; }
